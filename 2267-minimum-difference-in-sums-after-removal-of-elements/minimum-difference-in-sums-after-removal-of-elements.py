@@ -5,7 +5,7 @@ class Solution:
         n = n3 // 3
 
         leftMinSum = [0] * n3
-        rightMinSum = [0] * n3
+        rightMaxSum = [0] * n3
 
         maxHeap = []
         leftCurrSum = 0
@@ -25,10 +25,10 @@ class Solution:
             if len(minHeap) >= n + 1:
                 rightCurrSum -= heapq.heappop(minHeap)
             if i <= n3 - n:
-                rightMinSum[i] = rightCurrSum
+                rightMaxSum[i] = rightCurrSum
 
         result = float('inf')
         for i in range(n - 1, n3 - n):
-            result = min(result, leftMinSum[i] - rightMinSum[i + 1])
+            result = min(result, leftMinSum[i] - rightMaxSum[i + 1])
 
         return result
